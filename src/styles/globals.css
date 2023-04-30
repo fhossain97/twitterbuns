@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 #__next {
-  width: 33%;
+  width: 100%;
+  text-align: center;
 }

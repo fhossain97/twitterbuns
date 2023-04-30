@@ -1,8 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Container } from "./Container";
 const style = {
-  signButton: `max-w-full items-end text-white shadow-md px-4 py-2`,
-  bannerStyle: `fixed bottom-0 w-full bg-primary p-4 text-white`,
+  signButton: `items-end text-white shadow-md px-4 py-2`,
+  bannerStyle: `bottom-0 bg-primary p-4 text-white `,
   containerStyle: `bg-transparent flex justify-between`,
 };
 
@@ -11,7 +10,7 @@ export const LoggedOutBanner = () => {
 
   return (
     <div className={style.bannerStyle}>
-      <Container>
+      <div className={style.containerStyle}>
         <div>
           {userSession ? (
             <button className={style.signButton} onClick={() => void signOut()}>
@@ -29,7 +28,7 @@ export const LoggedOutBanner = () => {
             </>
           )}
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
