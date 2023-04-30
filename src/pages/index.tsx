@@ -1,13 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
 
-import { api } from "~/utils/api";
+import { Timeline } from "~/components/Timeline";
 
 const Home: NextPage = () => {
-  const { data: userSession } = useSession();
-
   return (
     <>
       <Head>
@@ -16,12 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1>Hello there! My name is Farhana</h1>
-        {userSession ? (
-          <button onClick={() => void signOut()}>Sign Out</button>
-        ) : (
-          <button onClick={() => void signIn()}>Sign In</button>
-        )}
+        <Timeline />
       </div>
     </>
   );

@@ -1,10 +1,11 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import { Container } from "~/components/Container";
+import { LoggedOutBanner } from "~/components/LoggedOutBanner";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,7 +13,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Container>
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <LoggedOutBanner />
+      </Container>
     </SessionProvider>
   );
 };
