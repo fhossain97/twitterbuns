@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api } from "../utils/api";
+import { api as trpc } from "../utils/api";
 import { object, string } from "zod";
 
 const styles = {
@@ -16,8 +16,14 @@ export const tweetSchema = object({
 export const CreateTweetForm = () => {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
+  const utils = trpc.useContext();
 
-  const { mutateAsync } = api.tweet.create.useMutation();
+  const { mutateAsync } = trpc.tweet.create.useMutation({
+    onSuccess: () => {
+      setText("");
+      utils.tweet.timeline.invalidate();
+    },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();

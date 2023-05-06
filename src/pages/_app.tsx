@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { Container } from "~/components/Container";
 import { LoggedOutBanner } from "~/components/LoggedOutBanner";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -17,8 +18,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <main>
           <Component {...pageProps} />
         </main>
-        <LoggedOutBanner />
       </Container>
+      <LoggedOutBanner />
+      <ReactQueryDevtools initialIsOpen={false} />
     </SessionProvider>
   );
 };
